@@ -38,3 +38,183 @@ entities:
       - id: 101
         type: boolean
         name: switch
+  - entity: switch
+    name: Auto mode 1
+    category: config
+    icon: "mdi:auto-mode"
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Auto mode 2
+    category: config
+    icon: "mdi:auto-mode"
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  - entity: select
+    name: Control source 1
+    category: config
+    icon: "mdi:thermometer-water"
+    dps:
+      - id: 107
+        type: string
+        name: option
+        mapping:
+          - dps_val: temperature
+            value: Temperature
+          - dps_val: humidity
+            value: Humidity
+  - entity: select
+    name: Control source 2
+    category: config
+    icon: "mdi:thermometer-water"
+    dps:
+      - id: 108
+        type: string
+        name: option
+        mapping:
+          - dps_val: temperature
+            value: Temperature
+          - dps_val: humidity
+            value: Humidity
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        mapping:
+          - dps_val: "on"
+            value: "on"
+          - dps_val: "off"
+            value: "off"
+          - dps_val: memory
+            value: memory
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 20
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: sensor
+    name: Control mode
+    category: diagnostic
+    icon: "mdi:remote"
+    dps:
+      - id: 121
+        type: string
+        name: sensor
+  - entity: sensor
+    name: Alarm
+    category: diagnostic
+    icon: "mdi:alert-outline"
+    dps:
+      - id: 118
+        type: string
+        name: sensor
+  - entity: number
+    name: Switch 1 minimum temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 22
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -20
+          max: 80
+  - entity: number
+    name: Switch 1 maximum temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -20
+          max: 80
+  - entity: number
+    name: Switch 1 minimum humidity
+    class: humidity
+    category: config
+    dps:
+      - id: 41
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: number
+    name: Switch 1 maximum humidity
+    class: humidity
+    category: config
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: number
+    name: Switch 2 minimum temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -20
+          max: 80
+  - entity: number
+    name: Switch 2 maximum temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -20
+          max: 80
+  - entity: number
+    name: Switch 2 minimum humidity
+    class: humidity
+    category: config
+    dps:
+      - id: 116
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: number
+    name: Switch 2 maximum humidity
+    class: humidity
+    category: config
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
