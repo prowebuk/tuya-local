@@ -108,22 +108,99 @@ entities:
             value: fahrenheit
   - entity: sensor
     name: Control mode
+    class: enum
     category: diagnostic
     icon: "mdi:remote"
     dps:
       - id: 121
         type: string
         name: sensor
+        mapping:
+          - dps_val: Local_Lock
+            value: Locked
+          - dps_val: Local_Mode
+            value: Local only
+          - dps_val: Remote_Mode
+            value: Remote only
+          - dps_val: Full_Control
+            value: Local and remote
   - entity: sensor
-    name: Alarm
+    name: Event
+    class: enum
     category: diagnostic
     icon: "mdi:alert-outline"
     dps:
       - id: 118
         type: string
         name: sensor
+        mapping:
+          - dps_val: Normal
+            value: Normal
+          - dps_val: S1_high_temp_alarm
+            value: Switch 1 high temperature
+          - dps_val: S1_low_temp_alarm
+            value: Switch 1 low temperature
+          - dps_val: S1_high_humid_alarm
+            value: Switch 1 high humidity
+          - dps_val: S1_low_humid_alarm
+            value: Switch 1 low humidity
+          - dps_val: S2_high_temp_alarm
+            value: Switch 2 high temperature
+          - dps_val: S2_low_temp_alarm
+            value: Switch 2 low temperature
+          - dps_val: S2_high_humid_alarm
+            value: Switch 2 high humidity
+          - dps_val: S2_low_humid_alarm
+            value: Switch 2 low humidity
+          - dps_val: Local_Lock
+            value: Locked
+          - dps_val: Local_Mode
+            value: Local only
+          - dps_val: Remote_Mode
+            value: Remote only
+          - dps_val: Full_Control
+            value: Local and remote
+  - entity: sensor
+    name: Cycle time
+    category: diagnostic
+    icon: "mdi:timer-cog-outline"
+    dps:
+      - id: 7
+        type: string
+        name: sensor
+  - entity: switch
+    name: Probe
+    category: config
+    icon: "mdi:thermometer-probe"
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
   - entity: number
-    name: Switch 1 minimum temperature
+    translation_key: temperature_calibration
+    category: config
+    dps:
+      - id: 30
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -9
+          max: 9
+  - entity: number
+    name: Humidity calibration
+    category: config
+    icon: "mdi:water-percent"
+    dps:
+      - id: 47
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: -9
+          max: 9
+  - entity: number
+    name: Sw 1 min temp
     class: temperature
     category: config
     dps:
@@ -132,22 +209,10 @@ entities:
         name: value
         unit: C
         range:
-          min: -20
-          max: 80
+          min: -25
+          max: 100
   - entity: number
-    name: Switch 1 maximum temperature
-    class: temperature
-    category: config
-    dps:
-      - id: 110
-        type: integer
-        name: value
-        unit: C
-        range:
-          min: -20
-          max: 80
-  - entity: number
-    name: Switch 1 minimum humidity
+    name: Sw 1 min humidity
     class: humidity
     category: config
     dps:
@@ -156,10 +221,22 @@ entities:
         name: value
         unit: "%"
         range:
-          min: 0
+          min: 1
+          max: 99
+  - entity: number
+    name: Sw 1 max temp
+    class: temperature
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -25
           max: 100
   - entity: number
-    name: Switch 1 maximum humidity
+    name: Sw 1 max humidity
     class: humidity
     category: config
     dps:
@@ -168,10 +245,10 @@ entities:
         name: value
         unit: "%"
         range:
-          min: 0
-          max: 100
+          min: 1
+          max: 99
   - entity: number
-    name: Switch 2 minimum temperature
+    name: Sw 2 min temp
     class: temperature
     category: config
     dps:
@@ -180,22 +257,10 @@ entities:
         name: value
         unit: C
         range:
-          min: -20
-          max: 80
+          min: -25
+          max: 100
   - entity: number
-    name: Switch 2 maximum temperature
-    class: temperature
-    category: config
-    dps:
-      - id: 115
-        type: integer
-        name: value
-        unit: C
-        range:
-          min: -20
-          max: 80
-  - entity: number
-    name: Switch 2 minimum humidity
+    name: Sw 2 min humidity
     class: humidity
     category: config
     dps:
@@ -204,10 +269,22 @@ entities:
         name: value
         unit: "%"
         range:
-          min: 0
+          min: 1
+          max: 99
+  - entity: number
+    name: Sw 2 max temp
+    class: temperature
+    category: config
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -25
           max: 100
   - entity: number
-    name: Switch 2 maximum humidity
+    name: Sw 2 max humidity
     class: humidity
     category: config
     dps:
@@ -216,5 +293,69 @@ entities:
         name: value
         unit: "%"
         range:
-          min: 0
-          max: 100
+          min: 1
+          max: 99
+  - entity: switch
+    name: Sw 1 low temp relay
+    category: config
+    icon: "mdi:thermometer-low"
+    dps:
+      - id: 122
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Sw 1 high temp relay
+    category: config
+    icon: "mdi:thermometer-high"
+    dps:
+      - id: 123
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Sw 1 low humidity relay
+    category: config
+    icon: "mdi:water-percent"
+    dps:
+      - id: 124
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Sw 1 high humidity relay
+    category: config
+    icon: "mdi:water-percent"
+    dps:
+      - id: 125
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Sw 2 low temp relay
+    category: config
+    icon: "mdi:thermometer-low"
+    dps:
+      - id: 126
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Sw 2 high temp relay
+    category: config
+    icon: "mdi:thermometer-high"
+    dps:
+      - id: 127
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Sw 2 low humidity relay
+    category: config
+    icon: "mdi:water-percent"
+    dps:
+      - id: 128
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Sw 2 high humidity relay
+    category: config
+    icon: "mdi:water-percent"
+    dps:
+      - id: 129
+        type: boolean
+        name: switch
